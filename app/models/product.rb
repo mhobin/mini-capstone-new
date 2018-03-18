@@ -12,7 +12,8 @@ class Product < ApplicationRecord
     tax: tax,
     total: total,
     is_discounted: is_discounted?,
-    supplier: supplier.as_json
+    supplier: supplier.as_json,
+    images: images.as_json
 
 
     }
@@ -40,6 +41,10 @@ class Product < ApplicationRecord
 
   def supplier
     Supplier.find_by(id: supplier_id)
+  end
+
+  def images
+    Image.where(product_id: id)
   end
 
 end
